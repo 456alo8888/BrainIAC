@@ -55,6 +55,39 @@ See [quickstart.ipynb](./src/quickstart.ipynb) to get started on how to preproce
 - [Time to Stroke Prediction](./docs/downstream_tasks/timetostroke_prediction.md)
 - [Tumor Segmentation](./docs/downstream_tasks/tumor_segmentation.md)
 
+## SOOP Regression Outcome (raw + preprocessed)
+
+BrainIAC now includes a dedicated pipeline for SOOP outcome regression experiments on both preprocessed TRACE and raw TRACE splits.
+
+- Plan: `research/experiment_plan.md`
+- Manifest: `research/experiment_manifest_brainiac.md`
+- Runner: `research/run_soop_outcome_experiments_brainiac.sh`
+
+Checkpoint compatibility note for SOOP pipeline:
+- Verified compatible (current code): `src/checkpoints/BrainIAC_mock.ckpt`
+- Known mismatch with current ViT schema: `src/checkpoints/BrainIAC.ckpt` (missing `cross_attn`/`norm_cross_attn` keys)
+- Runner now executes a checkpoint preflight validation before training.
+
+Example smoke run:
+
+```bash
+cd /mnt/disk2/hieupc2/Stroke_project/code/baseline_encoder/BrainIAC
+BRAINIAC_CKPT=/path/to/BrainIAC.ckpt \
+EPOCHS=1 LIMIT_TRAIN_BATCHES=2 LIMIT_VAL_BATCHES=2 \
+bash research/run_soop_outcome_experiments_brainiac.sh
+```
+
+Quick smoke with the verified checkpoint:
+
+```bash
+cd /mnt/disk2/hieupc2/Stroke_project/code/baseline_encoder/BrainIAC
+BRAINIAC_CKPT=/mnt/disk2/hieupc2/Stroke_project/code/baseline_encoder/BrainIAC/src/checkpoints/BrainIAC_mock.ckpt \
+EPOCHS=1 LIMIT_TRAIN_BATCHES=1 LIMIT_VAL_BATCHES=1 \
+bash research/run_soop_outcome_experiments_brainiac.sh
+```
+
+Outputs are written under `baseline_encoder/BrainIAC/outputs/*` per run and include checkpoints, prediction CSVs, and regression metrics JSON files.
+
 
 ## Brainiac Platform
 

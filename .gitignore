@@ -1,0 +1,15 @@
+research/
+research_phase2
+outputs
+src/new_ckpt/
+src/logs/
+src/wandb/
+src/checkpoints
+*.ckpt
+src/__pycache__/
+*.pyc
+lightning_logs/
+events.out.tfevents*
+*.ckpt
+checkpoints/
+src/checkpoints/
