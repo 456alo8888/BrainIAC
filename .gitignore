@@ -13,3 +13,6 @@ events.out.tfevents*
 *.ckpt
 checkpoints/
 src/checkpoints/
+src/*.zip
+*.zip
+*.pt
