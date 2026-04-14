@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cd /mnt/disk2/hieupc2/Stroke_project/code/baseline_encoder/BrainIAC/src
 export WANDB_API_KEY=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
 : "${WANDB_API_KEY:?Please export WANDB_API_KEY before running}"
 export WANDB_MODE="${WANDB_MODE:-online}"
@@ -10,7 +9,7 @@ export WANDB_PROJECT="${WANDB_PROJECT:-brainiac-soop-outcome}"
 mkdir -p logs
 LOG_FILE="logs/soop_raw_image_tabular_$(date +%Y%m%d_%H%M%S).log"
 
-FOLD_DIR="/mnt/disk2/hieupc2/Stroke_project/code/datasets/fold_raw_trace"
+FOLD_DIR="../../../datasets/fold_raw_trace"
 OUTPUT_DIR="outputs/soop_smoke_fix/raw_image_tabular"
 RUN_NAME="soop-gsrankin-raw-image-tabular"
 TARGET_COL="nihss"

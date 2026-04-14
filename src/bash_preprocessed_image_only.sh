@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cd /mnt/disk2/hieupc2/Stroke_project/code/baseline_encoder/BrainIAC/src
 export WANDB_API_KEY=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
 : "${WANDB_API_KEY:?Please export WANDB_API_KEY before running}"
 export WANDB_MODE="${WANDB_MODE:-online}"
@@ -10,7 +9,7 @@ export WANDB_PROJECT="${WANDB_PROJECT:-brainiac-soop-outcome}"
 mkdir -p logs
 LOG_FILE="logs/soop_preprocessed_image_only_$(date +%Y%m%d_%H%M%S).log"
 
-FOLD_DIR="/mnt/disk2/hieupc2/Stroke_project/code/datasets/fold"
+FOLD_DIR="../../datasets/fold"
 OUTPUT_DIR="outputs/soop_smoke_fix/preprocessed_image_only"
 RUN_NAME="soop-gsrankin-preprocessed-image-only"
 TARGET_COL="nihss"
@@ -60,7 +59,7 @@ fi
 echo "[EVAL][$(date -Iseconds)] start" | tee -a "$LOG_FILE"
 CUDA_VISIBLE_DEVICES=1 python eval_soop_regression.py \
   --config "$RESOLVED_CONFIG" \
-  --checkpoint /mnt/disk2/hieupc2/Stroke_project/code/baseline_encoder/BrainIAC/src/outputs/soop_smoke_fix/preprocessed_image_only/checkpoints/best-model-epoch=49-val_mae=1.3859.ckpt \
+  --checkpoint ./outputs/soop_smoke_fix/preprocessed_image_only/checkpoints/best-model-epoch=49-val_mae=1.3859.ckpt \
   --split-csv "$FOLD_DIR/test.csv" \
   --output-dir "$OUTPUT_DIR/eval" \
   --target-col "$TARGET_COL" \

@@ -5,7 +5,7 @@ model:
   normalize_features: true
 
 data:
-  fold_dir: "/mnt/disk2/hieupc2/Stroke_project/code/datasets/fold"
+  fold_dir: "../../../datasets/fold"
   target_col: "gs_rankin_6isdeath"
   include_tabular: false
   normalize_tabular: true
@@ -18,7 +18,7 @@ data:
   pin_memory: false
 
 simclrvit:
-  ckpt_path: "/mnt/disk2/hieupc2/Stroke_project/code/baseline_encoder/BrainIAC/src/checkpoints/BrainIAC_mock.ckpt"
+  ckpt_path: "./checkpoints/BrainIAC_mock.ckpt"
 
 optim:
   optimizer: "adamw"
