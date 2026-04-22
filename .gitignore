@@ -1,5 +1,3 @@
-research/
-research_phase2
 outputs
 src/new_ckpt/
 src/logs/
@@ -13,6 +11,6 @@ events.out.tfevents*
 *.ckpt
 checkpoints/
 src/checkpoints/
-src/*.zip
+src/*.zip   
 *.zip
 *.pt
