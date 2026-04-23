@@ -84,21 +84,42 @@ class SOOPRegressionDataset(Dataset):
             missing = [c for c in tabular_feature_cols if c not in self.df.columns]
             if missing:
                 raise KeyError(f"Missing tabular feature columns in {self.csv_path}: {missing}")
-            return list(tabular_feature_cols)
-
-        excluded = {
-            "subject_id",
-            "trace_dir",
-            "image_path",
-            "mask_path",
-            "segm_path",
-            "tabular_path",
-            "tabular_features",
-            "nihss",
-            "gs_rankin_6isdeath",
-            TARGET_ALIAS,
-        }
-        cols = [col for col in self.df.columns if col not in excluded]
+            resolved_cols: List[str] = []
+            for col in tabular_feature_cols:
+                numeric_col = pd.to_numeric(self.df[col], errors="coerce")
+                if numeric_col.notna().any():
+                    resolved_cols.append(col)
+            return resolved_cols
+        if self.target_col == "gs_rankin_6isdeath":
+            excluded = {
+                "subject_id",
+                "trace_dir",
+                "image_path",
+                "mask_path",
+                "segm_path",
+                "tabular_path",
+                "tabular_features",
+                "gs_rankin_6isdeath",
+                TARGET_ALIAS,
+            }
+        elif self.target_col == "nihss":
+            excluded = {
+                "subject_id",
+                "trace_dir",
+                "image_path",
+                "mask_path",
+                "segm_path",
+                "tabular_path",
+                "tabular_features",
+                "nihss"
+            }
+        cols = []
+        for col in self.df.columns:
+            if col in excluded:
+                continue
+            numeric_col = pd.to_numeric(self.df[col], errors="coerce")
+            if numeric_col.notna().any():
+                cols.append(col)
 
         if cols:
             return cols

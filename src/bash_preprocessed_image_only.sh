@@ -44,9 +44,14 @@ CUDA_VISIBLE_DEVICES=1 python train_lightning_soop_regression.py \
 
 echo "[TRAIN][$(date -Iseconds)] done" | tee -a "$LOG_FILE"
 
-BEST_CKPT="$(ls -1 "$OUTPUT_DIR"/checkpoints/*.ckpt | head -n 1 || true)"
-if [[ -z "$BEST_CKPT" ]]; then
-  echo "[ERROR] No checkpoint found under $OUTPUT_DIR/checkpoints" | tee -a "$LOG_FILE"
+BEST_CKPT_FILE="$OUTPUT_DIR/best_checkpoint_path.txt"
+if [[ ! -f "$BEST_CKPT_FILE" ]]; then
+  echo "[ERROR] Missing best checkpoint path file: $BEST_CKPT_FILE" | tee -a "$LOG_FILE"
+  exit 1
+fi
+BEST_CKPT="$(<"$BEST_CKPT_FILE")"
+if [[ -z "$BEST_CKPT" || ! -f "$BEST_CKPT" ]]; then
+  echo "[ERROR] Best checkpoint path is invalid: $BEST_CKPT" | tee -a "$LOG_FILE"
   exit 1
 fi
 
@@ -59,7 +64,7 @@ fi
 echo "[EVAL][$(date -Iseconds)] start" | tee -a "$LOG_FILE"
 CUDA_VISIBLE_DEVICES=1 python eval_soop_regression.py \
   --config "$RESOLVED_CONFIG" \
-  --checkpoint ./outputs/soop_smoke_fix/preprocessed_image_only/checkpoints/best-model-epoch=49-val_mae=1.3859.ckpt \
+  --checkpoint "$BEST_CKPT" \
   --split-csv "$FOLD_DIR/test.csv" \
   --output-dir "$OUTPUT_DIR/eval" \
   --target-col "$TARGET_COL" \

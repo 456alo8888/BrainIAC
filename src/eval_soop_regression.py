@@ -59,28 +59,21 @@ def main():
     fold_dir = Path(config["data"]["fold_dir"])
     train_csv = fold_dir / "train.csv"
 
-    train_df = pd.read_csv(train_csv)
-    excluded = {
-        "subject_id",
-        "trace_dir",
-        "image_path",
-        "mask_path",
-        "segm_path",
-        "tabular_path",
-        "tabular_features",
-        "nihss",
-        "gs_rankin_6isdeath",
-        "gs_rankin+6isdeath",
-    }
-    tabular_cols = [c for c in train_df.columns if c not in excluded]
-
+    tabular_cols = None
     tabular_mean = None
     tabular_std = None
-    if include_tabular and tabular_cols and normalize_tabular:
-        train_tab = train_df[tabular_cols].apply(pd.to_numeric, errors="coerce").fillna(0.0).to_numpy(dtype=np.float32)
-        tabular_mean = train_tab.mean(axis=0, keepdims=True)
-        tabular_std = train_tab.std(axis=0, keepdims=True)
-        tabular_std = np.where(tabular_std == 0.0, 1.0, tabular_std)
+    if include_tabular:
+        train_dataset = SOOPRegressionDataset(
+            csv_path=str(train_csv),
+            target_col=config["data"].get("target_col", "gs_rankin_6isdeath"),
+            transform=None,
+            include_tabular=True,
+            normalize_tabular=normalize_tabular,
+            drop_missing_label=True,
+        )
+        tabular_cols = list(train_dataset.tabular_feature_cols)
+        tabular_mean = train_dataset.tabular_mean
+        tabular_std = train_dataset.tabular_std
 
     dataset = SOOPRegressionDataset(
         csv_path=args.split_csv,

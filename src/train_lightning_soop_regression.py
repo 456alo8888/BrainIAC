@@ -38,21 +38,15 @@ def inspect_backbone_checkpoint(ckpt_path: str) -> Dict[str, Any]:
             f"checkpoint={path}"
         )
 
-    if len(cross_attn_keys) == 0:
-        suggestion = path.parent / "BrainIAC_mock.ckpt"
-        suggestion_msg = f" Suggested compatible checkpoint: {suggestion}" if suggestion.exists() else ""
-        raise ValueError(
-            "Checkpoint backbone appears incompatible with current ViT schema: "
-            "missing cross-attention keys ('cross_attn'/'norm_cross_attn'). "
-            f"checkpoint={path}, total_keys={len(keys)}, backbone_keys={len(backbone_keys)}."
-            f"{suggestion_msg}"
-        )
+    has_cross_attn = len(cross_attn_keys) > 0
 
     return {
         "path": str(path),
         "total_keys": len(keys),
         "backbone_keys": len(backbone_keys),
         "cross_attn_keys": len(cross_attn_keys),
+        "has_cross_attn": has_cross_attn,
+        "schema": "with_cross_attn" if has_cross_attn else "without_cross_attn",
     }
 
 
@@ -85,15 +79,26 @@ def compute_regression_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> Dict[s
 class SOOPRegressionHead(nn.Module):
     def __init__(self, input_dim: int, hidden_dim: int, dropout: float, use_mlp: bool):
         super().__init__()
-        if use_mlp:
-            self.net = nn.Sequential(
-                nn.Linear(input_dim, hidden_dim),
-                nn.ReLU(inplace=True),
-                nn.Dropout(p=dropout),
-                nn.Linear(hidden_dim, 1),
-            )
-        else:
-            self.net = nn.Linear(input_dim, 1)
+        # if use_mlp:
+        #     self.net = nn.Sequential(
+        #         nn.Linear(input_dim, hidden_dim),
+        #         nn.ReLU(inplace=True),
+        #         nn.Dropout(p=dropout),
+        #         nn.Linear(hidden_dim, 1),
+        #     )
+        # else:
+        #     self.net = nn.Linear(input_dim, 1)
+
+        self.net = nn.Sequential(
+            nn.Linear(input_dim , 512),
+            nn.ReLU(inplace=True),
+            nn.Dropout(p=dropout),
+            nn.Linear(512,256),
+            nn.ReLU(inplace=True),
+            nn.Dropout(p=dropout),
+            nn.Linear(256, 1)
+        )
+
 
     def forward(self, x):
         return self.net(x)
@@ -342,15 +347,27 @@ def main():
         f"path={checkpoint_stats['path']} "
         f"total_keys={checkpoint_stats['total_keys']} "
         f"backbone_keys={checkpoint_stats['backbone_keys']} "
-        f"cross_attn_keys={checkpoint_stats['cross_attn_keys']}"
+        f"cross_attn_keys={checkpoint_stats['cross_attn_keys']} "
+        f"schema={checkpoint_stats['schema']}"
     )
+    if not checkpoint_stats["has_cross_attn"]:
+        print(
+            "Checkpoint note: no cross-attention weights found. "
+            "Backbone loading will proceed in partial mode (strict=False)."
+        )
 
     if args.validate_checkpoint_only:
         return
 
     visible_device = str(config.get("gpu", {}).get("visible_device", "")).strip()
-    if visible_device:
+    existing_visible = os.environ.get("CUDA_VISIBLE_DEVICES")
+    if visible_device and existing_visible in (None, ""):
         os.environ["CUDA_VISIBLE_DEVICES"] = visible_device
+    elif visible_device and existing_visible not in (None, ""):
+        print(
+            "Trainer config note: ignoring config gpu.visible_device because "
+            f"CUDA_VISIBLE_DEVICES is already set to '{existing_visible}'."
+        )
 
     output_dir = Path(config["logger"]["output_dir"])
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -391,13 +408,37 @@ def main():
     if use_wandb:
         callbacks.append(LearningRateMonitor(logging_interval="epoch"))
 
+    requested_accelerator = str(config["train"].get("accelerator", "gpu")).strip().lower()
+    requested_devices = int(config["train"].get("devices", 1))
+    requested_precision = str(config["train"].get("precision", "16-mixed")).strip().lower()
+
+    cuda_available = torch.cuda.is_available()
+    accelerator = requested_accelerator
+    devices = requested_devices
+    precision = requested_precision
+
+    if requested_accelerator in {"gpu", "cuda"} and not cuda_available:
+        accelerator = "cpu"
+        devices = 1
+        print(
+            "Trainer config note: requested GPU accelerator, but CUDA is unavailable. "
+            "Falling back to CPU."
+        )
+
+    if accelerator == "cpu" and precision in {"16-mixed", "bf16-mixed", "16", "bf16"}:
+        precision = "32-true"
+        print(
+            "Trainer config note: mixed precision is not used on CPU. "
+            "Overriding precision to 32-true."
+        )
+
     trainer = pl.Trainer(
         max_epochs=int(config["model"].get("max_epochs", 10)),
         logger=logger,
         callbacks=callbacks,
-        accelerator=config["train"].get("accelerator", "gpu"),
-        devices=int(config["train"].get("devices", 1)),
-        precision=config["train"].get("precision", "16-mixed"),
+        accelerator=accelerator,
+        devices=devices,
+        precision=precision,
         gradient_clip_val=float(config["train"].get("grad_clip_norm", 0.0)),
         limit_train_batches=float(config["train"].get("limit_train_batches", 1.0)),
         limit_val_batches=float(config["train"].get("limit_val_batches", 1.0)),
@@ -406,7 +447,11 @@ def main():
     trainer.fit(model, datamodule=data_module)
 
     best_model_path = checkpoint_callback.best_model_path
+    best_checkpoint_path_file = output_dir / "best_checkpoint_path.txt"
+    with best_checkpoint_path_file.open("w", encoding="utf-8") as f:
+        f.write(f"{best_model_path}\n")
     print(f"Best checkpoint: {best_model_path}")
+    print(f"Best checkpoint path file: {best_checkpoint_path_file}")
     print(f"Resolved config: {resolved_config_path}")
 
 

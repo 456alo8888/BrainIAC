@@ -45,9 +45,14 @@ python train_lightning_soop_regression.py \
 
 echo "[TRAIN][$(date -Iseconds)] done" | tee -a "$LOG_FILE"
 
-BEST_CKPT="$(ls -1 "$OUTPUT_DIR"/checkpoints/*.ckpt | head -n 1 || true)"
-if [[ -z "$BEST_CKPT" ]]; then
-  echo "[ERROR] No checkpoint found under $OUTPUT_DIR/checkpoints" | tee -a "$LOG_FILE"
+BEST_CKPT_FILE="$OUTPUT_DIR/best_checkpoint_path.txt"
+if [[ ! -f "$BEST_CKPT_FILE" ]]; then
+  echo "[ERROR] Missing best checkpoint path file: $BEST_CKPT_FILE" | tee -a "$LOG_FILE"
+  exit 1
+fi
+BEST_CKPT="$(<"$BEST_CKPT_FILE")"
+if [[ -z "$BEST_CKPT" || ! -f "$BEST_CKPT" ]]; then
+  echo "[ERROR] Best checkpoint path is invalid: $BEST_CKPT" | tee -a "$LOG_FILE"
   exit 1
 fi
 
