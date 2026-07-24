@@ -1,0 +1,110 @@
+_wandb:
+    value:
+        cli_version: 0.25.1
+        e:
+            wquo5uz7tx4rlh1i2ncjh1n8j29cbc70:
+                args:
+                    - --config
+                    - /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/outputs/raw_MRS_soop_kfold/soop_kfold/fold_0/gsrankin6death/image_only/resolved_config_soop_regression.yml
+                    - --checkpoint
+                    - /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/outputs/raw_MRS_soop_kfold/soop_kfold/fold_0/gsrankin6death/image_only/checkpoints/best-model-epoch=33-val_mae=1.3744.ckpt
+                    - --split-csv
+                    - /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/datasets/fold_raw_trace_fullmodal_mask/MRS/kfold/fold_0/test.csv
+                    - --output-dir
+                    - /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/outputs/raw_MRS_soop_kfold/soop_kfold/fold_0/gsrankin6death/image_only/eval
+                    - --target-col
+                    - gs_rankin_6isdeath
+                    - --batch-size
+                    - "1"
+                    - --num-workers
+                    - "4"
+                    - --no-include-tabular
+                    - --use-wandb
+                    - --project-name
+                    - raw-mrs-brainiac-soop-kfold
+                    - --run-name
+                    - brainiac_soop_kfold_fold_0_gsrankin6death_image_only_eval
+                codePath: src/eval_soop_regression.py
+                cpu_count: 24
+                cpu_count_logical: 32
+                cudaVersion: "12.2"
+                disk:
+                    /:
+                        total: "502392610816"
+                        used: "463718248448"
+                email: phunghieu5c@gmail.com
+                executable: /mnt/disk1/miniconda3/envs/hieupcvp/bin/python
+                git:
+                    commit: 2c81b24a3d9c5647e57b56978a852c7a4ee67bb5
+                    remote: git@github-hieupc:456alo8888/BrainIAC.git
+                gpu: NVIDIA GeForce RTX 4090
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Ada
+                      cudaCores: 16384
+                      memoryTotal: "25757220864"
+                      name: NVIDIA GeForce RTX 4090
+                      uuid: GPU-131c9a56-60f2-3bb0-7b04-575a2e52bd15
+                host: vaipe-Z790-UD-AX
+                memory:
+                    total: "67163320320"
+                os: Linux-5.15.0-139-generic-x86_64-with-glibc2.31
+                program: /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/src/eval_soop_regression.py
+                python: CPython 3.12.7
+                root: /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/research
+                startedAt: "2026-05-26T11:01:57.833330Z"
+                writerId: wquo5uz7tx4rlh1i2ncjh1n8j29cbc70
+        m: []
+        python_version: 3.12.7
+        t:
+            "1":
+                - 1
+                - 2
+                - 3
+                - 5
+                - 9
+                - 11
+                - 41
+                - 48
+                - 49
+                - 53
+                - 103
+            "2":
+                - 1
+                - 2
+                - 3
+                - 5
+                - 9
+                - 11
+                - 41
+                - 48
+                - 49
+                - 53
+                - 103
+            "3":
+                - 2
+                - 13
+                - 15
+                - 16
+                - 62
+            "4": 3.12.7
+            "5": 0.25.1
+            "6": 5.4.0
+            "8":
+                - 2
+            "10":
+                - 20
+            "12": 0.25.1
+            "13": linux-x86_64
+checkpoint:
+    value: /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/outputs/raw_MRS_soop_kfold/soop_kfold/fold_0/gsrankin6death/image_only/checkpoints/best-model-epoch=33-val_mae=1.3744.ckpt
+include_tabular:
+    value: false
+mode:
+    value: evaluation
+num_tabular_features:
+    value: 0
+split_csv:
+    value: /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/datasets/fold_raw_trace_fullmodal_mask/MRS/kfold/fold_0/test.csv
+target_col:
+    value: gs_rankin_6isdeath

@@ -1,0 +1,13 @@
+2026-05-27 22:46:02,223 INFO    MainThread:1993697 [wandb_setup.py:_flush():81] Current SDK version is 0.25.1
+2026-05-27 22:46:02,223 INFO    MainThread:1993697 [wandb_setup.py:_flush():81] Configure stats pid to 1993697
+2026-05-27 22:46:02,223 INFO    MainThread:1993697 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2026-05-27 22:46:02,223 INFO    MainThread:1993697 [wandb_init.py:setup_run_log_directory():717] Logging user logs to /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/research/wandb/run-20260527_224602-31ojxcnf/logs/debug.log
+2026-05-27 22:46:02,223 INFO    MainThread:1993697 [wandb_init.py:setup_run_log_directory():718] Logging internal logs to /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/research/wandb/run-20260527_224602-31ojxcnf/logs/debug-internal.log
+2026-05-27 22:46:02,223 INFO    MainThread:1993697 [wandb_init.py:init():844] calling init triggers
+2026-05-27 22:46:02,223 INFO    MainThread:1993697 [wandb_init.py:init():849] wandb.init called with sweep_config: {}
+config: {'mode': 'evaluation', 'checkpoint': '/mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/outputs/synthetic_MRS_soop_kfold/soop_kfold/fold_4/gsrankin6death/image_only/checkpoints/best-model-epoch=01-val_mae=1.6234.ckpt', 'split_csv': '/mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/datasets/fold_nonstripped_synthetic_mask/MRS/kfold/fold_4/test.csv', 'target_col': 'gs_rankin_6isdeath', 'include_tabular': False, 'num_tabular_features': 0, '_wandb': {}}
+2026-05-27 22:46:02,223 INFO    MainThread:1993697 [wandb_init.py:init():892] starting backend
+2026-05-27 22:46:02,439 INFO    MainThread:1993697 [wandb_init.py:init():895] sending inform_init request
+2026-05-27 22:46:02,441 INFO    MainThread:1993697 [wandb_init.py:init():903] backend started and connected
+2026-05-27 22:46:02,442 INFO    MainThread:1993697 [wandb_init.py:init():973] updated telemetry
+2026-05-27 22:46:02,445 INFO    MainThread:1993697 [wandb_init.py:init():997] communicating run to backend with 90.0 second timeout

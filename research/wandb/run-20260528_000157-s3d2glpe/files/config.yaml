@@ -1,0 +1,228 @@
+_wandb:
+    value:
+        cli_version: 0.25.1
+        e:
+            6pt0o5vw6mucap9c2ebdz4j1ectn0bbd:
+                args:
+                    - --config
+                    - /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/src/config_soop_regression.yml
+                    - --fold-dir
+                    - /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/datasets/fold_nonstripped_synthetic_mask/MRS/kfold/fold_3
+                    - --target-col
+                    - gs_rankin_6isdeath
+                    - --no-include-tabular
+                    - --ckpt-path
+                    - /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/src/checkpoints/BrainIAC.ckpt
+                    - --output-dir
+                    - /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/outputs/synthetic_MRS_soop_kfold/soop_kfold/fold_3/gsrankin6death/image_only
+                    - --run-name
+                    - brainiac_soop_kfold_fold_3_gsrankin6death_image_only
+                    - --batch-size
+                    - "8"
+                    - --num-workers
+                    - "4"
+                    - --max-epochs
+                    - "50"
+                    - --optimizer
+                    - adamw
+                    - --learning-rate
+                    - "5e-4"
+                    - --weight-decay
+                    - "1e-4"
+                    - --grad-clip-norm
+                    - "1.0"
+                    - --accelerator
+                    - gpu
+                    - --devices
+                    - "1"
+                    - --precision
+                    - 16-mixed
+                    - --limit-train-batches
+                    - "1.0"
+                    - --limit-val-batches
+                    - "1.0"
+                    - --freeze-backbone
+                    - --normalize-features
+                    - --use-wandb
+                    - --project-name
+                    - synthetic-mrs-brainiac-soop-kfold-2752026
+                codePath: src/train_lightning_soop_regression.py
+                cpu_count: 24
+                cpu_count_logical: 32
+                cudaVersion: "12.2"
+                disk:
+                    /:
+                        total: "502392610816"
+                        used: "476642414592"
+                email: phunghieu5c@gmail.com
+                executable: /mnt/disk1/miniconda3/envs/hieupcvp/bin/python
+                git:
+                    commit: 2c81b24a3d9c5647e57b56978a852c7a4ee67bb5
+                    remote: git@github-hieupc:456alo8888/BrainIAC.git
+                gpu: NVIDIA GeForce RTX 4090
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Ada
+                      cudaCores: 16384
+                      memoryTotal: "25757220864"
+                      name: NVIDIA GeForce RTX 4090
+                      uuid: GPU-131c9a56-60f2-3bb0-7b04-575a2e52bd15
+                host: vaipe-Z790-UD-AX
+                memory:
+                    total: "67163320320"
+                os: Linux-5.15.0-139-generic-x86_64-with-glibc2.31
+                program: /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/src/train_lightning_soop_regression.py
+                python: CPython 3.12.7
+                root: .
+                startedAt: "2026-05-27T17:01:57.728854Z"
+                writerId: 6pt0o5vw6mucap9c2ebdz4j1ectn0bbd
+        m:
+            - "1": trainer/global_step
+              "6":
+                - 3
+              "7": []
+            - "2": '*'
+              "5": 1
+              "6":
+                - 1
+              "7": []
+        python_version: 3.12.7
+        t:
+            "1":
+                - 1
+                - 2
+                - 3
+                - 5
+                - 9
+                - 11
+                - 41
+                - 48
+                - 49
+                - 53
+                - 103
+            "2":
+                - 1
+                - 2
+                - 3
+                - 5
+                - 9
+                - 11
+                - 41
+                - 48
+                - 49
+                - 53
+                - 103
+            "3":
+                - 7
+                - 13
+                - 15
+                - 16
+                - 66
+            "4": 3.12.7
+            "5": 0.25.1
+            "6": 5.4.0
+            "8":
+                - 2
+            "12": 0.25.1
+            "13": linux-x86_64
+config:
+    value:
+        data:
+            batch_size: 8
+            drop_missing_label: true
+            fold_dir: /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/datasets/fold_nonstripped_synthetic_mask/MRS/kfold/fold_3
+            include_tabular: false
+            normalize_tabular: true
+            num_workers: 4
+            pin_memory: false
+            size:
+                - 96
+                - 96
+                - 96
+            target_col: gs_rankin_6isdeath
+            test_batch_size: 1
+            val_batch_size: 1
+        gpu:
+            visible_device: "2"
+        logger:
+            output_dir: /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/outputs/synthetic_MRS_soop_kfold/soop_kfold/fold_3/gsrankin6death/image_only
+            project_name: synthetic-mrs-brainiac-soop-kfold-2752026
+            run_name: brainiac_soop_kfold_fold_3_gsrankin6death_image_only
+            save_dir: /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/outputs/synthetic_MRS_soop_kfold/soop_kfold/fold_3/gsrankin6death/image_only/checkpoints
+            save_name: best-model-{epoch:02d}-{val_mae:.4f}
+        model:
+            dropout: 0.2
+            hidden_dim_tabular_head: 256
+            max_epochs: 50
+            normalize_features: true
+        optim:
+            lr: 0.0005
+            momentum: 0.9
+            optimizer: adamw
+            weight_decay: 0.0001
+        simclrvit:
+            ckpt_path: /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/src/checkpoints/BrainIAC.ckpt
+        train:
+            accelerator: gpu
+            devices: 1
+            freeze_backbone: "yes"
+            grad_clip_norm: 1
+            limit_train_batches: 1
+            limit_val_batches: 1
+            precision: 16-mixed
+            seed: 42
+            use_wandb: true
+data:
+    value:
+        batch_size: 8
+        drop_missing_label: true
+        fold_dir: /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/datasets/fold_nonstripped_synthetic_mask/MRS/kfold/fold_3
+        include_tabular: false
+        normalize_tabular: true
+        num_workers: 4
+        pin_memory: false
+        size:
+            - 96
+            - 96
+            - 96
+        target_col: gs_rankin_6isdeath
+        test_batch_size: 1
+        val_batch_size: 1
+gpu:
+    value:
+        visible_device: "2"
+logger:
+    value:
+        output_dir: /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/outputs/synthetic_MRS_soop_kfold/soop_kfold/fold_3/gsrankin6death/image_only
+        project_name: synthetic-mrs-brainiac-soop-kfold-2752026
+        run_name: brainiac_soop_kfold_fold_3_gsrankin6death_image_only
+        save_dir: /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/outputs/synthetic_MRS_soop_kfold/soop_kfold/fold_3/gsrankin6death/image_only/checkpoints
+        save_name: best-model-{epoch:02d}-{val_mae:.4f}
+model:
+    value:
+        dropout: 0.2
+        hidden_dim_tabular_head: 256
+        max_epochs: 50
+        normalize_features: true
+num_tabular_features:
+    value: 0
+optim:
+    value:
+        lr: 0.0005
+        momentum: 0.9
+        optimizer: adamw
+        weight_decay: 0.0001
+simclrvit:
+    value:
+        ckpt_path: /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/src/checkpoints/BrainIAC.ckpt
+train:
+    value:
+        accelerator: gpu
+        devices: 1
+        freeze_backbone: "yes"
+        grad_clip_norm: 1
+        limit_train_batches: 1
+        limit_val_batches: 1
+        precision: 16-mixed
+        seed: 42
+        use_wandb: true

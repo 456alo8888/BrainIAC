@@ -1,0 +1,9 @@
+2026-05-26 18:42:09,429 INFO    MainThread:687229 [wandb_setup.py:_flush():81] Current SDK version is 0.25.1
+2026-05-26 18:42:09,429 INFO    MainThread:687229 [wandb_setup.py:_flush():81] Configure stats pid to 687229
+2026-05-26 18:42:09,429 INFO    MainThread:687229 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2026-05-26 18:42:09,429 INFO    MainThread:687229 [wandb_init.py:setup_run_log_directory():717] Logging user logs to /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/research/wandb/run-20260526_184209-5sm7ov4d/logs/debug.log
+2026-05-26 18:42:09,429 INFO    MainThread:687229 [wandb_init.py:setup_run_log_directory():718] Logging internal logs to /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/research/wandb/run-20260526_184209-5sm7ov4d/logs/debug-internal.log
+2026-05-26 18:42:09,429 INFO    MainThread:687229 [wandb_init.py:init():844] calling init triggers
+2026-05-26 18:42:09,429 INFO    MainThread:687229 [wandb_init.py:init():849] wandb.init called with sweep_config: {}
+config: {'mode': 'evaluation', 'checkpoint': '/mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/outputs/synthetic_MRS_soop_kfold/soop_kfold/fold_2/gsrankin6death/image_only/checkpoints/best-model-epoch=26-val_mae=1.3742.ckpt', 'split_csv': '/mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/datasets/fold_nonstripped_synthetic_mask/MRS/kfold/fold_2/test.csv', 'target_col': 'gs_rankin_6isdeath', 'include_tabular': False, 'num_tabular_features': 0, '_wandb': {}}
+2026-05-26 18:42:09,429 INFO    MainThread:687229 [wandb_init.py:init():892] starting backend

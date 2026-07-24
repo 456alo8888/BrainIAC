@@ -1,0 +1,24 @@
+2026-05-26 18:01:44,150 INFO    MainThread:619555 [wandb_setup.py:_flush():81] Current SDK version is 0.25.1
+2026-05-26 18:01:44,150 INFO    MainThread:619555 [wandb_setup.py:_flush():81] Configure stats pid to 619555
+2026-05-26 18:01:44,150 INFO    MainThread:619555 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2026-05-26 18:01:44,150 INFO    MainThread:619555 [wandb_init.py:setup_run_log_directory():717] Logging user logs to /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/research/wandb/run-20260526_180144-cw3ia6h6/logs/debug.log
+2026-05-26 18:01:44,150 INFO    MainThread:619555 [wandb_init.py:setup_run_log_directory():718] Logging internal logs to /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/research/wandb/run-20260526_180144-cw3ia6h6/logs/debug-internal.log
+2026-05-26 18:01:44,150 INFO    MainThread:619555 [wandb_init.py:init():844] calling init triggers
+2026-05-26 18:01:44,150 INFO    MainThread:619555 [wandb_init.py:init():849] wandb.init called with sweep_config: {}
+config: {'mode': 'evaluation', 'checkpoint': '/mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/outputs/raw_nihss_soop/soop_kfold/fold_0/nihss/image_only/checkpoints/best-model-epoch=10-val_mae=5.9026.ckpt', 'split_csv': '/mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/datasets/fold_raw_trace_fullmodal_mask/NIHSS/kfold/fold_0/test.csv', 'target_col': 'nihss', 'include_tabular': False, 'num_tabular_features': 0, '_wandb': {}}
+2026-05-26 18:01:44,150 INFO    MainThread:619555 [wandb_init.py:init():892] starting backend
+2026-05-26 18:01:46,371 INFO    MainThread:619555 [wandb_init.py:init():895] sending inform_init request
+2026-05-26 18:01:46,373 INFO    MainThread:619555 [wandb_init.py:init():903] backend started and connected
+2026-05-26 18:01:46,375 INFO    MainThread:619555 [wandb_init.py:init():973] updated telemetry
+2026-05-26 18:01:46,378 INFO    MainThread:619555 [wandb_init.py:init():997] communicating run to backend with 90.0 second timeout
+2026-05-26 18:01:47,403 INFO    MainThread:619555 [wandb_init.py:init():1042] starting run threads in backend
+2026-05-26 18:01:47,565 INFO    MainThread:619555 [wandb_run.py:_console_start():2524] atexit reg
+2026-05-26 18:01:47,565 INFO    MainThread:619555 [wandb_run.py:_redirect():2373] redirect: wrap_raw
+2026-05-26 18:01:47,565 INFO    MainThread:619555 [wandb_run.py:_redirect():2442] Wrapping output streams.
+2026-05-26 18:01:47,565 INFO    MainThread:619555 [wandb_run.py:_redirect():2465] Redirects installed.
+2026-05-26 18:01:47,571 INFO    MainThread:619555 [wandb_init.py:init():1082] run started, returning control to user process
+2026-05-26 18:01:48,855 INFO    MainThread:619555 [wandb_run.py:_finish():2291] finishing run hieupcvp-hust/raw-nihss-brainiac-soop-kfold/cw3ia6h6
+2026-05-26 18:01:48,855 INFO    MainThread:619555 [wandb_run.py:_atexit_cleanup():2490] got exitcode: 0
+2026-05-26 18:01:48,855 INFO    MainThread:619555 [wandb_run.py:_restore():2472] restore
+2026-05-26 18:01:48,855 INFO    MainThread:619555 [wandb_run.py:_restore():2478] restore done
+2026-05-26 18:01:53,992 INFO    MainThread:619555 [wandb_run.py:_footer_sync_info():3868] logging synced files

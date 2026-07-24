@@ -353,7 +353,8 @@ def main():
     if not checkpoint_stats["has_cross_attn"]:
         print(
             "Checkpoint note: no cross-attention weights found. "
-            "Backbone loading will proceed in partial mode (strict=False)."
+            "ViTBackboneNet removes unused MONAI cross-attention modules before "
+            "strict backbone loading."
         )
 
     if args.validate_checkpoint_only:

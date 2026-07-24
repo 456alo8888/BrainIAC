@@ -1,0 +1,21 @@
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name      | Type               | Params | Mode
+---------------------------------------------------------
+0 | backbone  | ViTBackboneNet     | 88.3 M | train
+1 | reg_head  | SOOPRegressionHead | 530 K  | train
+2 | criterion | MSELoss            | 0      | train
+---------------------------------------------------------
+530 K     Trainable params
+88.3 M    Non-trainable params
+88.9 M    Total params
+355.487   Total estimated model params size (MB)
+Epoch 49: 100%|█| 50/50 [00:13<00:00,  3.81it/s, v_num=e8c9, train_loss_step=46.20, val_loss=60.40,
+/mnt/disk1/miniconda3/envs/hieupcvp/lib/python3.12/site-packages/pytorch_lightning/utilities/_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+/mnt/disk1/miniconda3/envs/hieupcvp/lib/python3.12/site-packages/pytorch_lightning/utilities/data.py:78: Trying to infer the `batch_size` from an ambiguous collection. The batch size we found is 1. To avoid any miscalculations, use `self.log(..., batch_size=batch_size)`.
+/mnt/disk1/miniconda3/envs/hieupcvp/lib/python3.12/site-packages/pytorch_lightning/utilities/data.py:78: Trying to infer the `batch_size` from an ambiguous collection. The batch size we found is 8. To avoid any miscalculations, use `self.log(..., batch_size=batch_size)`.
+/mnt/disk1/miniconda3/envs/hieupcvp/lib/python3.12/site-packages/pytorch_lightning/utilities/data.py:78: Trying to infer the `batch_size` from an ambiguous collection. The batch size we found is 6. To avoid any miscalculations, use `self.log(..., batch_size=batch_size)`.
+Best checkpoint: /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/outputs/raw_nihss_soop/soop_kfold/fold_0/nihss/image_tabular/checkpoints/best-model-epoch=18-val_mae=5.8314.ckpt
+`Trainer.fit` stopped: `max_epochs=50` reached.
+Best checkpoint path file: /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/outputs/raw_nihss_soop/soop_kfold/fold_0/nihss/image_tabular/best_checkpoint_path.txt
+Resolved config: /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/outputs/raw_nihss_soop/soop_kfold/fold_0/nihss/image_tabular/resolved_config_soop_regression.yml

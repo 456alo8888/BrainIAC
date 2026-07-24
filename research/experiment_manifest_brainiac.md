@@ -9,8 +9,8 @@
 ## Shared Inputs
 - Config file: `src/config_soop_regression.yml`
 - BrainIAC pretrained checkpoint: `<set BRAINIAC_CKPT>`
-- Verified compatible checkpoint (current code): `src/checkpoints/BrainIAC_mock.ckpt`
-- Note: `src/checkpoints/BrainIAC.ckpt` is not compatible with current ViT schema in `src/model.py`.
+- Verified compatible checkpoint (current code): `src/checkpoints/BrainIAC.ckpt`
+- Note: `src/model.py` removes unused MONAI cross-attention modules before strict backbone loading so the public-style `BrainIAC.ckpt` non-cross-attention schema can load exactly.
 - Preprocessed fold: `/mnt/disk2/hieupc2/Stroke_project/code/datasets/fold`
 - Raw fold: `/mnt/disk2/hieupc2/Stroke_project/code/datasets/fold_raw_trace`
 
@@ -55,7 +55,7 @@
 ## Reproducible Command
 ```bash
 cd /mnt/disk2/hieupc2/Stroke_project/code/baseline_encoder/BrainIAC
-BRAINIAC_CKPT=/mnt/disk2/hieupc2/Stroke_project/code/baseline_encoder/BrainIAC/src/checkpoints/BrainIAC_mock.ckpt \
+BRAINIAC_CKPT=/mnt/disk2/hieupc2/Stroke_project/code/baseline_encoder/BrainIAC/src/checkpoints/BrainIAC.ckpt \
 bash research/run_soop_outcome_experiments_brainiac.sh
 ```
 

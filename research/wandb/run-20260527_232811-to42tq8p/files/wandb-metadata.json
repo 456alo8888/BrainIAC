@@ -1,0 +1,61 @@
+{
+  "os": "Linux-5.15.0-139-generic-x86_64-with-glibc2.31",
+  "python": "CPython 3.12.7",
+  "startedAt": "2026-05-27T16:28:11.215589Z",
+  "args": [
+    "--config",
+    "/mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/outputs/synthetic_nihss_soop/soop_kfold/fold_0/nihss/image_tabular/resolved_config_soop_regression.yml",
+    "--checkpoint",
+    "/mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/outputs/synthetic_nihss_soop/soop_kfold/fold_0/nihss/image_tabular/checkpoints/best-model-epoch=13-val_mae=5.8442.ckpt",
+    "--split-csv",
+    "/mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/datasets/fold_nonstripped_synthetic_mask/NIHSS/kfold/fold_0/test.csv",
+    "--output-dir",
+    "/mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/outputs/synthetic_nihss_soop/soop_kfold/fold_0/nihss/image_tabular/eval",
+    "--target-col",
+    "nihss",
+    "--batch-size",
+    "1",
+    "--num-workers",
+    "4",
+    "--include-tabular",
+    "--use-wandb",
+    "--project-name",
+    "synthetic-nihss-brainiac-soop-kfold-2752026",
+    "--run-name",
+    "brainiac_soop_kfold_fold_0_nihss_image_tabular_eval"
+  ],
+  "program": "/mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/src/eval_soop_regression.py",
+  "codePath": "src/eval_soop_regression.py",
+  "git": {
+    "remote": "git@github-hieupc:456alo8888/BrainIAC.git",
+    "commit": "2c81b24a3d9c5647e57b56978a852c7a4ee67bb5"
+  },
+  "email": "phunghieu5c@gmail.com",
+  "root": "/mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/research",
+  "host": "vaipe-Z790-UD-AX",
+  "executable": "/mnt/disk1/miniconda3/envs/hieupcvp/bin/python",
+  "cpu_count": 24,
+  "cpu_count_logical": 32,
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "502392610816",
+      "used": "476643459072"
+    }
+  },
+  "memory": {
+    "total": "67163320320"
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA GeForce RTX 4090",
+      "memoryTotal": "25757220864",
+      "cudaCores": 16384,
+      "architecture": "Ada",
+      "uuid": "GPU-131c9a56-60f2-3bb0-7b04-575a2e52bd15"
+    }
+  ],
+  "cudaVersion": "12.2",
+  "writerId": "zhrmodnj4xdgi4nbnt4x2zvrsokqr6hk"
+}

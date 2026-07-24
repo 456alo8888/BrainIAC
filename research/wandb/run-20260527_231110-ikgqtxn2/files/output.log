@@ -1,0 +1,22 @@
+/mnt/disk1/miniconda3/envs/hieupcvp/lib/python3.12/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:652: Checkpoint directory /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/outputs/synthetic_nihss_soop/soop_kfold/fold_0/nihss/image_only/checkpoints exists and is not empty.
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name      | Type               | Params | Mode
+---------------------------------------------------------
+0 | backbone  | ViTBackboneNet     | 88.3 M | train
+1 | reg_head  | SOOPRegressionHead | 525 K  | train
+2 | criterion | MSELoss            | 0      | train
+---------------------------------------------------------
+525 K     Trainable params
+88.3 M    Non-trainable params
+88.9 M    Total params
+355.464   Total estimated model params size (MB)
+Epoch 49: 100%|█| 50/50 [00:08<00:00,  6.10it/s, v_num=txn2, train_
+/mnt/disk1/miniconda3/envs/hieupcvp/lib/python3.12/site-packages/pytorch_lightning/utilities/_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+/mnt/disk1/miniconda3/envs/hieupcvp/lib/python3.12/site-packages/pytorch_lightning/utilities/data.py:78: Trying to infer the `batch_size` from an ambiguous collection. The batch size we found is 1. To avoid any miscalculations, use `self.log(..., batch_size=batch_size)`.
+/mnt/disk1/miniconda3/envs/hieupcvp/lib/python3.12/site-packages/pytorch_lightning/utilities/data.py:78: Trying to infer the `batch_size` from an ambiguous collection. The batch size we found is 8. To avoid any miscalculations, use `self.log(..., batch_size=batch_size)`.
+/mnt/disk1/miniconda3/envs/hieupcvp/lib/python3.12/site-packages/pytorch_lightning/utilities/data.py:78: Trying to infer the `batch_size` from an ambiguous collection. The batch size we found is 6. To avoid any miscalculations, use `self.log(..., batch_size=batch_size)`.
+Best checkpoint: /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/outputs/synthetic_nihss_soop/soop_kfold/fold_0/nihss/image_only/checkpoints/best-model-epoch=20-val_mae=6.0230.ckpt
+`Trainer.fit` stopped: `max_epochs=50` reached.
+Best checkpoint path file: /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/outputs/synthetic_nihss_soop/soop_kfold/fold_0/nihss/image_only/best_checkpoint_path.txt
+Resolved config: /mnt/disk1/hieupc/4gpus-Stroke-outcome-prediction-code/code/baseline_encoder/BrainIAC/outputs/synthetic_nihss_soop/soop_kfold/fold_0/nihss/image_only/resolved_config_soop_regression.yml
